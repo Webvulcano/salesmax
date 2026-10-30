@@ -1,7 +1,7 @@
 import { CalendarCheck, Compass, Database, GraduationCap, Handshake, PhoneCall, Repeat, Target } from "lucide-react";
-import { Section, SectionHeading } from "@/components/ui/Section";
+import Reveal from "@/components/ui/Reveal";
+import { Container, Eyebrow, Heading, Section } from "@/components/ui/Section";
 
-// Sorrend = Figma oszlopok (fentről le, balról jobbra); lg-n grid-flow-col tartja.
 const services = [
   { icon: Target, title: "Leadgenerálás", text: "Potenciális ügyfelek azonosítása és megszerzése." },
   { icon: PhoneCall, title: "Cold outreach", text: "Telefonos, LinkedIn- vagy e-mailes megkeresések." },
@@ -15,29 +15,32 @@ const services = [
 
 export default function Services() {
   return (
-    <Section id="szolgaltatasok" className="bg-cream py-16 lg:py-25">
-      <div className="mx-auto flex w-full max-w-content flex-col items-center gap-15">
-        <SectionHeading
-          title="Szolgáltatások"
-          text="Az ügyfélszerzés teljes folyamatát lefedjük — egyben vagy akár csak egy-egy lépését."
-        />
-        <ul className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-flow-col lg:grid-cols-4 lg:grid-rows-2">
-          {services.map(({ icon: Icon, title, text }) => (
-            <li
+    <Section id="szolgaltatasok" className="bg-cream py-20 lg:py-30">
+      <Container className="flex flex-col gap-12 lg:gap-16">
+        <Reveal className="flex max-w-240 flex-col gap-6">
+          <Eyebrow>Szolgáltatások</Eyebrow>
+          <Heading size="md">Az ügyfélszerzés teljes folyamatát lefedjük<span className="max-sm:hidden"> — egyben vagy akár csak egy-egy lépését</span>.</Heading>
+        </Reveal>
+
+        <ul className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+          {services.map(({ icon: Icon, title, text }, i) => (
+            <Reveal
+              as="li"
               key={title}
-              className="flex flex-col items-start gap-4 rounded-xl border border-accent/40 bg-white p-5 lg:min-h-46"
+              delay={(i % 4) * 80}
+              className="flex flex-col items-center gap-5 rounded-2xl border border-line bg-white px-3 py-6 text-center sm:gap-8 sm:p-6 lg:px-6 lg:py-10"
             >
-              <span className="flex size-10 items-center justify-center rounded-full bg-primary text-white">
-                <Icon size={20} strokeWidth={1.75} aria-hidden />
+              <span className="flex size-12 items-center sm:size-16 justify-center rounded-full bg-primary/10 text-primary">
+                <Icon size={30} strokeWidth={1.5} aria-hidden />
               </span>
-              <div className="flex flex-col gap-3">
-                <h3 className="text-lg font-semibold">{title}</h3>
-                <p className="text-base tracking-body">{text}</p>
+              <div className="flex flex-col gap-2">
+                <h3 className="text-base font-medium tracking-heading sm:text-lg">{title}</h3>
+                <p className="text-sm text-muted sm:text-base">{text}</p>
               </div>
-            </li>
+            </Reveal>
           ))}
         </ul>
-      </div>
+      </Container>
     </Section>
   );
 }

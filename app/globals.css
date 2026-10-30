@@ -1,54 +1,84 @@
 @import "tailwindcss";
 
-/* Design tokenek — Figma: Sales-oldal (19:138) */
+/* Design tokenek — színek a salesmaxing-src-ből (arany-fehér), layout: Cerebrium / Foundation / Neverhack refek */
 @theme {
   --color-primary: #b69867;
   --color-primary-dark: #9c7f50;
   --color-accent: #e3be81;
   --color-cream: #fdfbf8;
   --color-tint: #fefcf9;
+  --color-ink: #141210; /* meleg majdnem-fekete: szöveg + sötét szekciók */
+  --color-line: #e9e4dc; /* hajszálvonalak, kártya keretek */
+  --color-muted: #6f6a63; /* másodlagos szöveg */
 
-  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
 
-  --container-content: 85.375rem; /* 1366px — Figma tartalomszélesség */
+  --container-content: 85.375rem; /* 1366px */
 
-  --tracking-body: 0.02em; /* p: 0.32px @16px */
-  --tracking-display: 0.0667em; /* H1: 4px @60px */
+  --tracking-display: -0.03em; /* nagy headline: szoros */
+  --tracking-heading: -0.02em;
+  --tracking-label: 0.12em; /* uppercase címkék */
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 
   /* Tipográfia: 16px alap, major third (×1.25) skála — csak ezeket a text-* osztályokat használd */
   --text-xs: 0.64rem;
-  --text-xs--line-height: normal;
+  --text-xs--line-height: 1.5;
   --text-sm: 0.8rem;
-  --text-sm--line-height: normal;
+  --text-sm--line-height: 1.5;
   --text-base: 1rem;
-  --text-base--line-height: normal;
+  --text-base--line-height: 1.6;
   --text-lg: 1.25rem;
-  --text-lg--line-height: normal;
+  --text-lg--line-height: 1.5;
   --text-xl: 1.5625rem;
-  --text-xl--line-height: normal;
+  --text-xl--line-height: 1.35;
   --text-2xl: 1.953rem;
-  --text-2xl--line-height: normal;
+  --text-2xl--line-height: 1.2;
   --text-3xl: 2.441rem;
-  --text-3xl--line-height: normal;
+  --text-3xl--line-height: 1.12;
   --text-4xl: 3.052rem;
-  --text-4xl--line-height: normal;
+  --text-4xl--line-height: 1.08;
   --text-5xl: 3.815rem;
-  --text-5xl--line-height: normal;
+  --text-5xl--line-height: 1.04;
   --text-6xl: 4.768rem;
-  --text-6xl--line-height: normal;
+  --text-6xl--line-height: 1;
 }
 
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  scroll-padding-top: 6rem; /* fix navbar alá ne csússzanak az anchorok */
 }
 
 body {
   background: #ffffff;
-  color: #000000;
-  line-height: normal;
+  color: var(--color-ink);
 }
 
 summary::-webkit-details-marker {
   display: none;
+}
+
+/* Scrollra beúszás (components/ui/Reveal.jsx) */
+.reveal {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition:
+    opacity 0.9s var(--ease-out-soft),
+    transform 0.9s var(--ease-out-soft);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
