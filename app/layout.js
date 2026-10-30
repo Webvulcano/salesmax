@@ -1,10 +1,10 @@
-import { Poppins } from "next/font/google";
+import { Inter_Tight } from "next/font/google";
 import "./globals.css";
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+const interTight = Inter_Tight({
+  variable: "--font-inter-tight",
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600"],
 });
 
 export const metadata = {
@@ -15,7 +15,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="hu" className={`${poppins.variable} antialiased`}>
+    <html lang="hu" className={`${interTight.variable} antialiased`}>
+      <head>
+        {/* JS nélkül ne maradjon láthatatlan a beúszó tartalom */}
+        <noscript>
+          <style>{`.reveal{opacity:1;transform:none}`}</style>
+        </noscript>
+      </head>
       <body className="font-sans">{children}</body>
     </html>
   );

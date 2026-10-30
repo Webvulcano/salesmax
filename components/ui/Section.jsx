@@ -1,25 +1,39 @@
-import Image from "next/image";
-
-// Teljes szélességű szekció, opcionális háttérképpel + 60%-os fekete overlay-jel (Figma minta).
-export function Section({ id, bgImage, className = "", children }) {
+// Szekció-keret + közös fejléc elemek. dark=true: a navbar világos (fehér szöveg) módra vált fölötte.
+export function Section({ id, dark = false, className = "", children }) {
   return (
-    <section id={id} className={`relative isolate w-full scroll-mt-4 px-4 sm:px-8 lg:px-20 ${className}`}>
-      {bgImage && (
-        <div aria-hidden className="absolute inset-0 -z-10">
-          <Image src={bgImage} alt="" fill sizes="100vw" className="object-cover" />
-          <div className="absolute inset-0 bg-black/60" />
-        </div>
-      )}
+    <section id={id} data-nav={dark ? "dark" : undefined} className={`relative isolate w-full px-4 sm:px-8 lg:px-10 ${className}`}>
       {children}
     </section>
   );
 }
 
-export function SectionHeading({ title, text, light = false, className = "" }) {
+export function Container({ className = "", children }) {
+  return <div className={`mx-auto w-full max-w-content ${className}`}>{children}</div>;
+}
+
+// Kis uppercase címke (szekció-eyebrow)
+export function Eyebrow({ light = false, className = "", children }) {
   return (
-    <div className={`flex flex-col items-center gap-5 text-center ${light ? "text-white" : "text-black"} ${className}`}>
-      <h2 className="text-2xl font-bold sm:text-3xl lg:text-4xl">{title}</h2>
-      {text && <p className="max-w-160 text-base tracking-body">{text}</p>}
-    </div>
+    <p
+      className={`flex items-center gap-2.5 text-sm font-medium uppercase tracking-label ${light ? "text-white/70" : "text-muted"} ${className}`}
+    >
+      {children}
+    </p>
+  );
+}
+
+const headingSizes = {
+  lg: "text-3xl sm:text-4xl lg:text-5xl",
+  md: "text-2xl sm:text-3xl lg:text-4xl",
+};
+
+// Nagy, vékony headline — szoros betűköz
+export function Heading({ as: Tag = "h2", size = "lg", light = false, className = "", children }) {
+  return (
+    <Tag
+      className={`font-light tracking-heading text-balance ${headingSizes[size]} ${light ? "text-white" : "text-ink"} ${className}`}
+    >
+      {children}
+    </Tag>
   );
 }
