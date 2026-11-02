@@ -70,7 +70,7 @@ export default function Team() {
         <div className="grid grid-cols-1 items-end gap-6 lg:grid-cols-12 lg:gap-16">
           <Reveal className="flex flex-col gap-6 lg:col-span-6">
             <Eyebrow>Csapatunk</Eyebrow>
-            <Heading>Sales csapatunk</Heading>
+            <Heading>Vezetőink</Heading>
           </Reveal>
           <Reveal delay={120} className="lg:col-span-5 lg:col-start-8">
             <p className="text-base text-muted lg:text-lg">Tapasztalt értékesítők, akik a te céged növekedéséért dolgoznak.</p>
