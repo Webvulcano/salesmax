@@ -18,18 +18,18 @@ const members = [
     photo: { src: "/munkatarsak/ivanits-peter.png", w: 576, h: 576, eye: { x: 257, y: 181, dist: 70 } },
     bio: "A biztosítási szektorban és a sales managementben szerzett tapasztalataim megtanítottak arra, hogyan találjam meg a közös hangot különböző emberekkel. Szeretek új kapcsolatokat kialakítani, ötleteket megosztani és olyan lehetőségeket keresni, amelyekből valami új születhet. A SalesMaxban ezt a szemléletet szeretném kamatoztatni, miközben én magam is folyamatosan fejlődöm.",
   },
-  {
-    name: "Erős Máté",
-    role: "Junior ügyfélmenedzser",
-    photo: { src: "/munkatarsak/eros-mate.png", w: 1024, h: 1536, eye: { x: 490, y: 401, dist: 156 } },
-    bio: "Diákként és vállalkozóként hiszek a folyamatos fejlődésben. Fontos számomra, hogy mindig új dolgokat tanuljak, bővítsem a tudásomat, és olyan tapasztalatokat szerezzek, amelyeket a gyakorlatban is hasznosítani tudok.",
-  },
-  {
-    name: "Guti László",
-    role: "Műszaki értékesítő",
-    photo: { src: "/munkatarsak/guti-laszlo.png", w: 1254, h: 1254, eye: { x: 593, y: 294, dist: 114 } },
-    bio: "Szeretem az embereket, mindig nyitott vagyok új partnerekkel tárgyalni, hogy a lehető leghatékonyabban érjünk el együtt eredményeket. Környezetvédelmi, energetikai és pénzügyi ismereteimet mások segítésére fordítom. Céltudatos és kitartó embernek ismerem magam, és igyekszem a legtöbbet kihozni önmagamból.",
-  },
+  // {
+  //   name: "Erős Máté",
+  //   role: "Junior ügyfélmenedzser",
+  //   photo: { src: "/munkatarsak/eros-mate.png", w: 1024, h: 1536, eye: { x: 490, y: 401, dist: 156 } },
+  //   bio: "Diákként és vállalkozóként hiszek a folyamatos fejlődésben. Fontos számomra, hogy mindig új dolgokat tanuljak, bővítsem a tudásomat, és olyan tapasztalatokat szerezzek, amelyeket a gyakorlatban is hasznosítani tudok.",
+  // },
+  // {
+  //   name: "Guti László",
+  //   role: "Műszaki értékesítő",
+  //   photo: { src: "/munkatarsak/guti-laszlo.png", w: 1254, h: 1254, eye: { x: 593, y: 294, dist: 114 } },
+  //   bio: "Szeretem az embereket, mindig nyitott vagyok új partnerekkel tárgyalni, hogy a lehető leghatékonyabban érjünk el együtt eredményeket. Környezetvédelmi, energetikai és pénzügyi ismereteimet mások segítésére fordítom. Céltudatos és kitartó embernek ismerem magam, és igyekszem a legtöbbet kihozni önmagamból.",
+  // },
 ];
 
 // Szemtávolság és szemvonal a kártya szélességének arányában (margin-top % a szélességhez mér,
@@ -77,7 +77,8 @@ export default function Team() {
           </Reveal>
         </div>
 
-        <ul className="grid grid-cols-2 gap-x-3 gap-y-10 sm:gap-x-6 sm:gap-y-12 lg:grid-cols-4">
+        {/* 2 tag látszik → középre; ha visszakerül Máté + László: max-w-2xl törlése, lg:grid-cols-4 vissza */}
+        <ul className="mx-auto grid w-full max-w-2xl grid-cols-2 gap-x-3 gap-y-10 sm:gap-x-6 sm:gap-y-12">
           {members.map((m, i) => (
             <Reveal as="li" key={m.name} delay={i * 80} className="flex flex-col gap-3 sm:gap-5">
               <MemberDialog
