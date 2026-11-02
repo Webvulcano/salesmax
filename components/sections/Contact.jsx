@@ -3,9 +3,7 @@ import { Phone } from "lucide-react";
 import CopyEmail from "@/components/ui/CopyEmail";
 import ContactForm from "@/components/ContactForm";
 import { Container, Eyebrow, Heading, Section } from "@/components/ui/Section";
-
-const PHONE = "+36 70 639 6046";
-const EMAIL = "info@salesmaxhungary.hu";
+import { PHONE, EMAIL } from "@/lib/site";
 
 export default function Contact() {
   return (

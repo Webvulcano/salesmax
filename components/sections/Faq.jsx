@@ -1,4 +1,5 @@
 import FaqItem from "@/components/ui/FaqItem";
+import JsonLd from "@/components/JsonLd";
 import { Container, Eyebrow, Heading, Section } from "@/components/ui/Section";
 
 const faqs = [
@@ -27,6 +28,17 @@ const faqs = [
 export default function Faq() {
   return (
     <Section id="gyik" className="bg-cream py-20 lg:py-30">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map(({ q, a }) => ({
+            "@type": "Question",
+            name: q,
+            acceptedAnswer: { "@type": "Answer", text: a },
+          })),
+        }}
+      />
       <Container className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
           <div className="flex flex-col items-start gap-6 lg:sticky lg:top-28">

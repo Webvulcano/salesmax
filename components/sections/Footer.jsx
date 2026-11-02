@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="mx-auto flex w-full max-w-content flex-col gap-12">
         <div className="flex flex-col justify-between gap-10 border-b border-white/10 pb-12 lg:flex-row lg:items-start">
           <a href="#" aria-label="Salesmax — kezdőlap">
-            <Image src="/figma/logo.png" alt="Salesmax" width={1080} height={185} className="h-auto w-40" />
+            <Image src="/figma/logo.png" alt="Salesmax" width={1080} height={185} sizes="160px" className="h-auto w-40" />
           </a>
           <ul className="grid grid-cols-2 gap-x-12 gap-y-3 sm:flex sm:gap-8">
             {[...links, { href: "#kapcsolat", label: "Kapcsolat" }].map((l) => (

@@ -52,7 +52,8 @@ export default function MemberDialog({ name, role, bio, photo, dialogPhoto }) {
         </div>
         <div className="flex shrink-0 flex-col gap-3 p-5">
           <div className="flex flex-col gap-1">
-            <h3 className="text-xl font-normal tracking-heading">{name}</h3>
+            {/* p, nem h3: a kártyán már van h3 ugyanezzel a névvel (SEO: ne duplázódjon a heading) */}
+            <p className="text-xl font-normal tracking-heading">{name}</p>
             {role && <p className="text-sm font-medium text-primary">{role}</p>}
           </div>
           <p className="text-sm text-muted">{bio}</p>
