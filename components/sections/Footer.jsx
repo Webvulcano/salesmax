@@ -1,9 +1,12 @@
 import Image from "next/image";
 import { links } from "@/lib/nav";
+import { getCms } from "@/lib/cms";
 
 // TODO: impresszum (cégnév, székhely, adószám, e-mail) — az ügyféladatok még hiányoznak (ugyfel.md)
 // TODO: adatkezelési tájékoztató link, ha elkészül az oldal
-export default function Footer() {
+export default async function Footer() {
+  const cms = await getCms();
+
   return (
     <footer data-nav="dark" className="w-full bg-ink px-4 pt-16 pb-8 text-white sm:px-8 lg:px-10">
       <div className="mx-auto flex w-full max-w-content flex-col gap-12">
@@ -21,7 +24,9 @@ export default function Footer() {
             ))}
           </ul>
         </div>
-        <p className="text-sm text-white/50">© 2026 Salesmax. Minden jog fenntartva.</p>
+        <p className="text-sm text-white/50" {...cms.attr("home.footer.copyright")}>
+          {cms.text("home.footer.copyright")}
+        </p>
       </div>
     </footer>
   );

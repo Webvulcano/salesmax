@@ -6,7 +6,8 @@ import { X } from "lucide-react";
 // Csapattag-kártya tartalma + natív <dialog> popup (kép, név, pozíció, leírás).
 // Megnyitás: kártyakép, vagy mobilon a "Részletek" gomb. Mindig kifér a képernyőre (nincs görgetés):
 // ha kell, a kép zsugorodik. Háttérre kattintás és Esc bezárja; nyitva a háttér nem görget.
-export default function MemberDialog({ name, role, bio, photo, dialogPhoto }) {
+// attrs: { name, role, bio } CMS-attribútumok (szerkesztő kattintható mezői), a szerver Team-ből.
+export default function MemberDialog({ name, role, bio, photo, dialogPhoto, attrs = {} }) {
   const ref = useRef(null);
   const open = () => {
     ref.current?.showModal();
@@ -19,10 +20,18 @@ export default function MemberDialog({ name, role, bio, photo, dialogPhoto }) {
         {photo}
       </button>
       <div className="flex flex-col gap-1">
-        <h3 className="text-lg font-normal tracking-heading sm:text-xl">{name}</h3>
-        {role && <p className="text-sm font-medium text-primary">{role}</p>}
+        <h3 className="text-lg font-normal tracking-heading sm:text-xl" {...attrs.name}>
+          {name}
+        </h3>
+        {role && (
+          <p className="text-sm font-medium text-primary" {...attrs.role}>
+            {role}
+          </p>
+        )}
       </div>
-      <p className="hidden text-base text-muted sm:block">{bio}</p>
+      <p className="hidden text-base text-muted sm:block" {...attrs.bio}>
+        {bio}
+      </p>
       {/* Mobil: leírás helyett popup */}
       <button
         type="button"

@@ -24,7 +24,8 @@ async function copy(text) {
   el.remove();
 }
 
-export default function CopyEmail({ email }) {
+// emailAttr: CMS-attribútum az e-mail szövegén (szerkesztőben kattintható)
+export default function CopyEmail({ email, emailAttr }) {
   const [copied, setCopied] = useState(false);
   const timer = useRef(0);
 
@@ -58,7 +59,7 @@ export default function CopyEmail({ email }) {
           className={`absolute inset-0 transition-all duration-300 ${copied ? "scale-100 opacity-100" : "scale-50 opacity-0"}`}
         />
       </span>
-      {email}
+      <span {...emailAttr}>{email}</span>
       <span
         aria-hidden={!copied}
         className={`rounded-full bg-accent/15 px-2 py-0.5 text-xs font-medium text-accent transition-all duration-300 ease-out-soft ${copied ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0"}`}

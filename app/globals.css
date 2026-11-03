@@ -72,6 +72,14 @@ summary::-webkit-details-marker {
   transform: none;
 }
 
+/* Ügyfél Admin szerkesztő (CmsBridge: html.cms-edit): minden mező látható és kattintható legyen —
+   beúszás és a Folyamat inaktív lépéseinek halványítása kikapcsolva. */
+html.cms-edit .reveal,
+html.cms-edit .process-step {
+  opacity: 1;
+  transform: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

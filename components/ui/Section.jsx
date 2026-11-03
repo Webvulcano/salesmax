@@ -12,9 +12,10 @@ export function Container({ className = "", children }) {
 }
 
 // Kis uppercase címke (szekció-eyebrow)
-export function Eyebrow({ light = false, className = "", children }) {
+export function Eyebrow({ light = false, className = "", children, ...rest }) {
   return (
     <p
+      {...rest}
       className={`flex items-center gap-2.5 text-sm font-medium uppercase tracking-label ${light ? "text-white/70" : "text-muted"} ${className}`}
     >
       {children}
@@ -28,9 +29,10 @@ const headingSizes = {
 };
 
 // Nagy, vékony headline — szoros betűköz
-export function Heading({ as: Tag = "h2", size = "lg", light = false, className = "", children }) {
+export function Heading({ as: Tag = "h2", size = "lg", light = false, className = "", children, ...rest }) {
   return (
     <Tag
+      {...rest}
       className={`font-light tracking-heading text-balance ${headingSizes[size]} ${light ? "text-white" : "text-ink"} ${className}`}
     >
       {children}

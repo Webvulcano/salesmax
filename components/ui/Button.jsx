@@ -22,12 +22,15 @@ export default function Button({
   onClick,
   children = "Kérj ajánlatot",
   className = "",
+  labelProps,
 }) {
   const classes = `group inline-flex shrink-0 items-center justify-center gap-3 rounded-full py-2 pl-6 text-base font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-wait disabled:opacity-60 ${arrow ? "pr-2" : "pr-6"} ${variants[variant]} ${className}`;
 
   const content = (
     <>
-      <span className="py-1">{children}</span>
+      <span className="py-1" {...labelProps}>
+        {children}
+      </span>
       {arrow && (
         <span
           aria-hidden

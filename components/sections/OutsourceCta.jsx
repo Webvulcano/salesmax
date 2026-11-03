@@ -1,8 +1,12 @@
 import Image from "next/image";
 import Button from "@/components/ui/Button";
+import HighlightTitle from "@/components/ui/HighlightTitle";
 import { Container, Section } from "@/components/ui/Section";
+import { getCms } from "@/lib/cms";
 
-export default function OutsourceCta() {
+export default async function OutsourceCta() {
+  const cms = await getCms();
+
   return (
     <Section dark className="overflow-hidden bg-ink py-24 lg:py-40">
       <div aria-hidden className="absolute inset-0 -z-10">
@@ -12,11 +16,10 @@ export default function OutsourceCta() {
       <Container>
         <div className="mx-auto flex max-w-240 flex-col items-center gap-8 text-center">
           <h2 className="text-4xl font-light tracking-display text-balance text-white lg:text-6xl">
-            Pedig mindez <span className="text-accent">kiszervezhető</span> lenne
+            <HighlightTitle cms={cms} k="home.outsource_cta" />
           </h2>
-          <p className="max-w-160 text-base text-white/75 lg:text-lg">
-            Az elvesztett lehetőségeknek ára van. A kevesebb lezárt üzlet kieső bevételt jelent a cégnek. Az
-            ügyfélszerzés drágább, a növekedés lassabb.
+          <p className="max-w-160 text-base text-white/75 lg:text-lg" {...cms.attr("home.outsource_cta.text")}>
+            {cms.text("home.outsource_cta.text")}
           </p>
           <Button />
         </div>

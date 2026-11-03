@@ -4,7 +4,8 @@ import { useState } from "react";
 import { Plus } from "lucide-react";
 
 // GYIK harmonika-elem: a válasz animálva nyílik/csukódik (grid-rows 0fr → 1fr)
-export default function FaqItem({ q, a, id }) {
+// qAttr / aAttr: CMS-attribútumok. Szerkesztőben a kérdés szövege kijelöl, a + gomb nyit (ott látszik a válasz).
+export default function FaqItem({ q, a, id, qAttr, aAttr }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -17,7 +18,9 @@ export default function FaqItem({ q, a, id }) {
           aria-controls={id}
           className="flex w-full cursor-pointer items-center gap-6 py-6 text-left"
         >
-          <span className="flex-1 text-lg font-normal tracking-heading">{q}</span>
+          <span className="flex-1 text-lg font-normal tracking-heading" {...qAttr}>
+            {q}
+          </span>
           <span
             className={`flex size-8 shrink-0 items-center justify-center rounded-full ring-1 transition-all duration-300 ${open ? "rotate-45 bg-primary text-white ring-primary" : "ring-ink/15"}`}
           >
@@ -32,6 +35,7 @@ export default function FaqItem({ q, a, id }) {
         <div className="overflow-hidden" inert={!open}>
           <p
             className={`max-w-150 pb-6 text-base text-muted transition-opacity duration-500 ${open ? "opacity-100" : "opacity-0"}`}
+            {...aAttr}
           >
             {a}
           </p>
