@@ -7,7 +7,7 @@ export default function manifest() {
     description: siteDescription,
     start_url: "/",
     display: "standalone",
-    background_color: "#141210",
+    background_color: "#ffffff", // ikonok + OG: fehér háttér, rajta a Salesmax logó (ügyfél kérése)
     theme_color: "#141210",
     lang: "hu",
     icons: [

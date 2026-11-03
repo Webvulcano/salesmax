@@ -3,10 +3,11 @@
 // Kapcsolat-űrlap, lépésenként (server action: app/actions/contact.js → SimplyForms). Sikeres küldés után köszönő üzenet.
 // 3 választós kérdés (kattintásra továbblép) → opcionális kifejtős üzenet → elérhetőségek + hozzájárulás.
 // enabled=false (nincs SIMPLYFORMS_FORM_ID): "karbantartás alatt" üzenet az űrlap helyett.
-import { useActionState, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { sendContact } from "@/app/actions/contact";
 import Button from "@/components/ui/Button";
+import { trackEvent } from "@/lib/analytics";
 
 const field =
   "h-13 w-full rounded-lg bg-white/8 px-4 text-base text-white ring-1 ring-inset ring-white/15 placeholder:text-white/50 outline-none transition-colors focus:bg-white/12 focus:ring-2 focus:ring-accent";
@@ -59,6 +60,11 @@ export default function ContactForm({ enabled }) {
   const [answers, setAnswers] = useState({});
   const e = state?.errors ?? {};
   const v = state?.values ?? {};
+
+  // Sikeres küldés = Űrlapküldés konverzió (2. adat: mire kértek segítséget)
+  useEffect(() => {
+    if (state?.ok) trackEvent("Űrlapküldés", { oldal: window.location.pathname, segitseg: answers.segitseg ?? "" });
+  }, [state, answers.segitseg]);
 
   if (!enabled) {
     return <Notice title="Az űrlap karbantartás alatt">Kérjük, próbáld újra később.</Notice>;

@@ -1,6 +1,5 @@
 import { Inter_Tight } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import SiteAnalytics from "@/components/analytics/SiteAnalytics";
 import "./globals.css";
 import { siteUrl, siteName, siteTitle, siteDescription } from "@/lib/site";
 
@@ -47,9 +46,8 @@ export default function RootLayout({ children }) {
       </head>
       <body className="font-sans">
         {children}
-        {/* Vercel Web Analytics + Speed Insights — csak Vercelen gyűjt, lokálban debug módban fut */}
-        <Analytics />
-        <SpeedInsights />
+        {/* Vercel Web Analytics + Speed Insights + kattintásmérés, lazy — Ügyfél Admin (analytics-site) Analitika oldala ebből olvas */}
+        <SiteAnalytics />
       </body>
     </html>
   );

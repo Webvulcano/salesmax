@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { Check, Mail } from "lucide-react";
+import { linkPlace, trackEvent } from "@/lib/analytics";
 
 // Kattintásra vágólapra másolja az emailt; ikon pipára vált + "Kimásolva" címke beúszik.
 // Ha a Clipboard API nem elérhető (http helyi IP-n) vagy elutasít → textarea + execCommand fallback.
@@ -27,7 +28,9 @@ export default function CopyEmail({ email }) {
   const [copied, setCopied] = useState(false);
   const timer = useRef(0);
 
-  const onClick = async () => {
+  const onClick = async (e) => {
+    // Nincs mailto link → a másolás számít Email konverziónak (lib/analytics.js)
+    trackEvent("Email", { hely: linkPlace(e.currentTarget), gomb: "E-mail másolás" });
     await copy(email);
     setCopied(true);
     clearTimeout(timer.current);
